@@ -1,38 +1,261 @@
-.App {
-  text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
+.app-shell {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+  background: #f5f7fb;
+  color: #1f2937;
+}
+
+body, html, #root {
+  margin: 0;
+  min-height: 100%;
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 1.5rem;
+  background: #0f172a;
+  color: #f8fafc;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.brand {
+  font-weight: 700;
+  letter-spacing: 0.06em;
+}
+
+.nav-links {
+  display: flex;
+  gap: 1rem;
+}
+
+.nav-links a {
+  color: #e2e8f0;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.nav-links a:hover {
+  color: #7dd3fc;
+}
+
+.hero {
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: 2rem;
+  align-items: center;
+  padding: 4rem 1.5rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.hero-copy {
+  max-width: 620px;
+}
+
+.eyebrow {
+  display: inline-block;
+  margin-bottom: 1rem;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  color: #0ea5e9;
+}
+
+.hero h1 {
+  margin: 0;
+  font-size: clamp(2.2rem, 4vw, 3.5rem);
+  line-height: 1.05;
+}
+
+.hero p {
+  margin: 1.5rem 0;
+  line-height: 1.8;
+  color: #475569;
+}
+
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  align-items: center;
+}
+
+.hero-actions button,
+.secondary-button,
+.submit-button {
+  border: none;
+  border-radius: 999px;
+  padding: 0.95rem 1.5rem;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: transform 150ms ease, box-shadow 150ms ease, background 150ms ease;
+}
+
+.hero-actions button,
+.submit-button {
+  background: #0f172a;
+  color: #f8fafc;
+}
+
+.secondary-button {
+  display: inline-flex;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
+  background: transparent;
+  color: #0f172a;
+  border: 2px solid #0f172a;
+  text-decoration: none;
+}
+
+.hero-actions button:hover,
+.secondary-button:hover,
+.submit-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 30px rgba(15, 23, 42, 0.12);
+}
+
+.hero-visual {
+  display: flex;
+  justify-content: center;
+}
+
+.feature-card {
+  width: 100%;
+  background: linear-gradient(135deg, #0ea5e9 0%, #2563eb 100%);
   color: white;
+  border-radius: 1.5rem;
+  padding: 2rem;
+  box-shadow: 0 25px 50px rgba(15, 23, 42, 0.15);
 }
 
-.App-link {
-  color: #61dafb;
+.feature-card h2 {
+  margin-top: 0;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+.details-panel {
+  background: white;
+  margin: 0 1.5rem;
+  padding: 2rem;
+  border-radius: 1.25rem;
+  box-shadow: 0 18px 40px rgba(15, 23, 42, 0.06);
+  max-width: 1200px;
+  margin-inline: auto;
+}
+
+.features {
+  padding: 3rem 1.5rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1.5rem;
+}
+
+.feature {
+  background: white;
+  padding: 1.8rem;
+  border-radius: 1.25rem;
+  box-shadow: 0 16px 30px rgba(15, 23, 42, 0.06);
+}
+
+.feature h3 {
+  margin-top: 0;
+}
+
+.contact {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  padding: 3rem 1.5rem 5rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.contact-copy h2 {
+  margin-top: 0;
+}
+
+.contact-copy p {
+  color: #475569;
+}
+
+.contact-form {
+  display: grid;
+  gap: 1rem;
+  background: white;
+  padding: 2rem;
+  border-radius: 1.25rem;
+  box-shadow: 0 16px 30px rgba(15, 23, 42, 0.06);
+}
+
+.contact-form label {
+  display: grid;
+  gap: 0.5rem;
+  font-weight: 600;
+  color: #0f172a;
+}
+
+.contact-form input {
+  width: 100%;
+  padding: 0.9rem 1rem;
+  border: 1px solid #cbd5e1;
+  border-radius: 0.85rem;
+  font-size: 1rem;
+}
+
+.contact-form input:focus {
+  outline: none;
+  border-color: #0ea5e9;
+  box-shadow: 0 0 0 4px rgba(14, 165, 233, 0.12);
+}
+
+.submit-button {
+  align-self: start;
+}
+
+.footer {
+  text-align: center;
+  padding: 2rem 1.5rem;
+  color: #475569;
+}
+
+@media (max-width: 900px) {
+  .hero,
+  .contact,
+  .features {
+    grid-template-columns: 1fr;
   }
-  to {
-    transform: rotate(360deg);
+
+  .hero {
+    padding-top: 2.5rem;
+  }
+}
+
+@media (max-width: 640px) {
+  .navbar {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+
+  .nav-links {
+    flex-wrap: wrap;
+    gap: 0.75rem;
+  }
+
+  .hero {
+    padding: 2rem 1rem;
+  }
+
+  .details-panel,
+  .contact,
+  .features {
+    margin: 0;
+    padding: 1.5rem 1rem;
   }
 }
