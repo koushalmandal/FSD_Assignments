@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game Library | <%= game ? game.title : 'Game Not Found' %></title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+    <%- include('partials/header') %>
+
+    <main class="page-content">
+        <% if (!game) { %>
+            <section class="empty-state">
+                <div class="empty-icon">?</div>
+                <p class="eyebrow">404 ERROR</p>
+                <h1>Game Not Found</h1>
+                <p>We could not find a game with that ID in your library.</p>
+                <a class="button primary-button" href="/games">Back to Games</a>
+            </section>
+        <% } else { %>
+            <a class="back-link" href="/games">← Back to all games</a>
+            <section class="game-details">
+                <img class="details-image" src="<%= game.image %>" alt="Cover placeholder for <%= game.title %>">
+                <div class="details-content">
+                    <p class="eyebrow"><%= game.genre %></p>
+                    <h1><%= game.title %></h1>
+                    <div class="details-meta">
+                        <span>★ <%= game.rating %> / 5</span>
+                        <span><%= game.platform %></span>
+                    </div>
+                    <p class="details-description"><%= game.description %></p>
+                    <button class="button primary-button" type="button">＋ Add to My Library</button>
+                </div>
+            </section>
+        <% } %>
+    </main>
+
+    <%- include('partials/footer') %>
+</body>
+</html>

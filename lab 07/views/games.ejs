@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game Library | All Games</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+    <%- include('partials/header') %>
+
+    <main class="page-content">
+        <section class="page-heading">
+            <p class="eyebrow">THE COLLECTION</p>
+            <h1>All Games</h1>
+            <p>Browse every game currently in your library.</p>
+        </section>
+
+        <section class="game-grid">
+            <% games.forEach(game => { %>
+                <article class="game-card">
+                    <img src="<%= game.image %>" alt="Cover placeholder for <%= game.title %>">
+                    <div class="game-card-content">
+                        <div class="game-card-topline">
+                            <span class="genre"><%= game.genre %></span>
+                            <span class="rating">★ <%= game.rating %></span>
+                        </div>
+                        <h3><%= game.title %></h3>
+                        <p class="platform"><%= game.platform %></p>
+                        <a class="button secondary-button" href="/game/<%= game.id %>">View Details</a>
+                    </div>
+                </article>
+            <% }); %>
+        </section>
+    </main>
+
+    <%- include('partials/footer') %>
+</body>
+</html>

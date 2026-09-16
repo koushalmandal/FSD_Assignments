@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game Library | Profile</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+    <%- include('partials/header') %>
+
+    <main class="page-content narrow-content">
+        <section class="profile-card">
+            <div class="avatar" aria-label="Gamer avatar">🎮</div>
+            <p class="eyebrow">GAMER PROFILE</p>
+            <h1><%= username %></h1>
+            <p class="profile-email"><%= email %></p>
+
+            <div class="profile-stats">
+                <div>
+                    <strong><%= gamesPlayed %></strong>
+                    <span>Games Played</span>
+                </div>
+                <div>
+                    <strong><%= favoriteGenre %></strong>
+                    <span>Favorite Genre</span>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <%- include('partials/footer') %>
+</body>
+</html>
