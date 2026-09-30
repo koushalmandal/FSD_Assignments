@@ -1,0 +1,48 @@
+<!-- This is the profile.ejs file for displaying user profiles and their children. -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Profile</title>
+</head>
+<body>
+    <h1>User Profile</h1>
+    <h2><%= user.firstName %> <%= user.lastName %></h2>
+    <p>Email: <%= user.email %></p>
+    <p>Phone: <%= user.phone %></p>
+
+    <h3>Children:</h3>
+    <% if (children.length > 0) { %>
+        <ul>
+            <% children.forEach(child => { %>
+                <li>
+                    <a href="/users/<%= user._id %>/children/<%= child._id %>">
+                        <%= child.firstName %> <%= child.lastName %> (Age: <%= child.age %>)
+                    </a>
+                    - <a href="/users/<%= user._id %>/children/<%= child._id %>/edit">Update</a>
+                    - <form action="/children/<%= child._id %>?_method=DELETE" method="POST" style="display:inline;">
+                        <button type="submit">Delete</button>
+                    </form>
+                </li>
+            <% }) %>
+        </ul>
+    <% } else { %>
+        <p>No children found for this user.</p>
+    <% } %>
+
+    <h3>Add Child:</h3>
+    <form action="/users/<%= user._id %>/children" method="POST">
+        <label for="firstName">First Name:</label>
+        <input type="text" name="firstName" required>
+        <label for="lastName">Last Name:</label>
+        <input type="text" name="lastName" required>
+        <label for="age">Age:</label>
+        <input type="number" name="age" required>
+        <label for="email">Email:</label>
+        <input type="email" name="email" required>
+        <button type="submit">Add Child</button>
+    </form>
+</body>
+</html>
