@@ -1,0 +1,8 @@
+<%- include('partials/header', { title: student.fullName }) %>
+<div class="breadcrumbs"><a href="/">Community board</a><span>/</span><span>Student profile</span></div>
+<section class="profile-hero"><div class="profile-avatar"><%= student.fullName.split(' ').map(part => part[0]).slice(0,2).join('').toUpperCase() %></div><div><div class="eyebrow">CAMPUS COMMUNITY MEMBER</div><h1><%= student.fullName %><span class="title-period">.</span></h1><p><%= student.department %> <span class="dot">·</span> <a href="mailto:<%= student.email %>"><%= student.email %></a></p></div></section>
+<div class="profile-facts"><div><small>CONTACT</small><strong><%= student.contactNumber %></strong></div><div><small>LOST REPORTS</small><strong><%= lostItems.length %></strong></div><div><small>FOUND REPORTS</small><strong><%= foundItems.length %></strong></div><div><small>MEMBER SINCE</small><strong><%= new Date(student.createdAt).toLocaleDateString('en', { month: 'long', year: 'numeric' }) %></strong></div></div>
+<section class="section-block profile-reports"><div class="section-heading"><div><div class="eyebrow">SHARED WITH THE COMMUNITY</div><h2>Item reports</h2></div><a class="text-link" href="/lost-items/new">Make a report <span>→</span></a></div>
+<% const reports = [...lostItems.map(item => ({ item, kind: 'LOST' })), ...foundItems.map(item => ({ item, kind: 'FOUND' }))].sort((a,b) => new Date(b.item.createdAt) - new Date(a.item.createdAt)); %>
+<% if (reports.length) { %><div class="card-grid"><% reports.forEach(({ item, kind }) => { %><%- include('partials/item-card', { item, kind }) %><% }) %></div><% } else { %><div class="empty-state compact-empty"><p>This student hasn’t shared an item report yet.</p></div><% } %></section>
+<%- include('partials/footer') %>

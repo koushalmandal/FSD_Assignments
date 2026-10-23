@@ -1,0 +1,31 @@
+<%- include('partials/header', { title: 'Home' }) %>
+<section class="hero">
+  <div class="hero-copy">
+    <div class="eyebrow hero-eyebrow"><span class="status-pulse"></span> YOUR CAMPUS, CONNECTED</div>
+    <h1>Lost something?<br><span>Found something?</span></h1>
+    <p class="hero-lede">A little help goes a long way. Find what’s missing, return what you’ve found, and make campus feel a little more like community.</p>
+    <div class="hero-actions"><a class="button button-lime" href="/lost-items/new">Report an item <span>↗</span></a><a class="text-link" href="/found-items">Browse found items <span>→</span></a></div>
+    <div class="hero-note"><span class="avatar-stack"><i>✳</i><i>↗</i><i>✦</i></span><span>Good things find their way back.</span></div>
+  </div>
+  <div class="hero-art" aria-label="Illustration of a lost-and-found notice board">
+    <div class="art-glow"></div><div class="art-orbit orbit-one"></div><div class="art-orbit orbit-two"></div>
+    <div class="board"><div class="board-pin"></div><div class="board-label">FOUND ON CAMPUS <span>✳</span></div><div class="bottle"><div class="bottle-cap"></div><div class="bottle-body"><div class="bottle-star">✦</div></div></div><div class="board-caption">A favorite bottle<br><span>near the library</span></div><div class="board-sticker">let’s<br>reunite <b>↗</b></div></div>
+    <span class="float-spark spark-a">✳</span><span class="float-spark spark-b">✦</span><span class="float-spark spark-c">·</span>
+    <div class="art-footnote"><span class="tiny-line"></span> SMALL THINGS, BIG RELIEF</div>
+  </div>
+</section>
+<section class="stats-row" aria-label="Campus activity">
+  <div class="stat"><span class="stat-number"><%= String(lostCount).padStart(2, '0') %></span><span class="stat-label">items reported lost</span><span class="stat-icon">↗</span></div>
+  <div class="stat"><span class="stat-number"><%= String(foundCount).padStart(2, '0') %></span><span class="stat-label">items found on campus</span><span class="stat-icon">✳</span></div>
+  <div class="stat"><span class="stat-number"><%= String(studentCount).padStart(2, '0') %></span><span class="stat-label">students in the community</span><span class="stat-icon">☺</span></div>
+  <div class="stat stat-prompt"><span class="stat-label">Every return starts<br>with a little kindness.</span><span class="prompt-arrow">↗</span></div>
+</section>
+<section class="section-block">
+  <div class="section-heading"><div><div class="eyebrow">THE COMMUNITY BOARD</div><h2>Recently reported</h2></div><a class="text-link" href="/lost-items">See all reports <span>→</span></a></div>
+  <% const recent = [...recentFound.map(item => ({ item, kind: 'FOUND' })), ...recentLost.map(item => ({ item, kind: 'LOST' }))].sort((a,b) => new Date(b.item.createdAt) - new Date(a.item.createdAt)).slice(0, 3); %>
+  <% if (recent.length) { %><div class="card-grid"><% recent.forEach(({ item, kind }) => { %><%- include('partials/item-card', { item, kind }) %><% }) %></div><% } else { %>
+    <div class="empty-state"><div class="empty-icon">✳</div><h3>Your community board is ready.</h3><p>When someone reports a lost or found item, it’ll show up here.</p><a class="text-link" href="/lost-items/new">Make the first report <span>→</span></a></div>
+  <% } %>
+</section>
+<section class="callout"><div class="callout-icon">↗</div><div><div class="eyebrow">A GOOD PLACE TO START</div><h2>It takes a community to<br>bring things back.</h2></div><a class="button button-dark" href="/students/new">Join the community <span>↗</span></a></section>
+<%- include('partials/footer') %>

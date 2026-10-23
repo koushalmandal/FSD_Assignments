@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f7f8f4">
+  <title><%= title ? `${title} · Campus Return` : 'Campus Return · Lost & Found' %></title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/styles.css">
+  <link rel="stylesheet" href="/phase2.css">
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="/" aria-label="Campus Return home"><span class="brand-mark">cr</span><span>campus<span class="brand-light">return</span></span></a>
+    <nav class="main-nav" aria-label="Main navigation">
+      <a href="/lost-items">Lost items</a><a href="/found-items">Found items</a><a href="/students/new">Students</a>
+    </nav>
+    <% if (currentStudentId) { %><div class="session-links"><a href="/students/<%= currentStudentId %>">My profile</a><form method="post" action="/logout"><button type="submit">Switch student</button></form></div><% } else { %><a class="session-link" href="/students/new">Choose student</a><% } %>
+    <a class="button button-small button-dark" href="/lost-items/new">Report an item <span aria-hidden="true">↗</span></a>
+  </header>
+  <main class="page-shell">
+  <% if (notice) { %><div class="notice <%= notice.type %>" role="status"><%= notice.text %></div><% } %>

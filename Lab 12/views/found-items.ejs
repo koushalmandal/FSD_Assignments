@@ -1,0 +1,5 @@
+<%- include('partials/header', { title: 'Found items' }) %>
+<section class="page-intro"><div><div class="eyebrow">GOOD THINGS FOUND</div><h1>Found items<span class="title-period">.</span></h1><p>See something familiar? Every found report is one step closer to a happy reunion.</p></div><a class="button button-dark" href="/found-items/new">Report a found item <span>↗</span></a></section>
+<div class="list-context"><span><strong><%= items.length %></strong> <%= items.length === 1 ? 'item' : 'items' %> shared by the community</span><a href="/lost-items">Looking for lost items? <span>→</span></a></div>
+<% if (items.length) { %><div class="card-grid"><% items.forEach(item => { %><%- include('partials/item-card', { item, kind: 'FOUND' }) %><% }) %></div><% } else { %><div class="empty-state"><div class="empty-icon">✳</div><h3>No found items have been reported yet.</h3><p>Found something on campus? Let’s help it find its person.</p><a class="button button-lime" href="/found-items/new">Report a found item <span>↗</span></a></div><% } %>
+<%- include('partials/footer') %>
